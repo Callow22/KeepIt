@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Selenium {
     private WebDriver driver;
     private LoginPage loginPage;
-    private Login login= Login.builder().build();
+    private static Login login= Login.builder().build();
     private DashboardPage dashboardPage;
     private static String info="Information";
 

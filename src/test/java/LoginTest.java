@@ -15,9 +15,10 @@ import static io.restassured.RestAssured.given;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LoginTest {
-    private Login login= Login.builder().build();
-    private User user=new User(true, ZonedDateTime.parse("2019-02-28T13:07:49Z"),"7dwqnq-5cvrcm-1z3ehj","80ltks-yhfls5-24zyf2",true);
-    private String guid="/zhc4v6-5ev7di-9hhhlm";
+    private static Login login= Login.builder().build();
+    private static User user=new User(true, ZonedDateTime.parse("2019-02-28T13:07:49Z"),"7dwqnq-5cvrcm-1z3ehj","80ltks-yhfls5-24zyf2",true);
+    private static String guid="/zhc4v6-5ev7di-9hhhlm";
+    private static int https_Ok=200;
     @BeforeAll
     public static void setUp(){
         RestAssured.baseURI="https://ws-test.keepit.com/users";
@@ -33,6 +34,8 @@ public class LoginTest {
                 .get(guid)
                 .then()
                 .extract().response();
+        int statusCode=response.getStatusCode();
+        Assert.assertEquals(statusCode, https_Ok);
         Assert.assertEquals(response.path("user.enabled").toString(),user.getEnabled().toString());
         Assert.assertEquals(response.path("user.created").toString(),user.getCreated().toString());
         Assert.assertEquals(response.path("user.product").toString(),user.getProduct());
