@@ -2,6 +2,7 @@ package Screens;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class DashboardPage {
 
@@ -17,9 +18,8 @@ public class DashboardPage {
         driver.findElement(microsoft).click();
     }
 
-    public String getInformation(){
-        driver.findElement(information).isDisplayed();
-        return driver.findElement(information).getText();
+    public WebElement getInformation(){
+        return driver.findElement(information);
     }
 
     public DashboardPage(WebDriver driver){

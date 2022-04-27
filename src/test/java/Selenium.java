@@ -3,6 +3,7 @@ import Screens.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
 import resources.Login;
@@ -40,6 +41,6 @@ public class Selenium {
         loginPage.clickSignInBtn();
         dashboardPage.clickAddConnector();
         dashboardPage.clickMicrosoft();
-        Assert.assertEquals(dashboardPage.getInformation(),info);
+        dashboardPage.getInformation().isDisplayed();
     }
 }
